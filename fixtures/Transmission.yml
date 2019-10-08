@@ -1,0 +1,4 @@
+App\Entity\Transmission:
+    transmission_{Traction, Propulsion, Intégrale}:
+        label: '<current()>'
+    

@@ -1,0 +1,4 @@
+App\Entity\VehicleModel:
+    model_{1..20}:
+        label: 'model_<current()>'
+        brand: '@brand_<numberBetween(1, 20)>'

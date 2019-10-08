@@ -1,0 +1,11 @@
+App\Entity\Vehicle:
+    vahicle_{1..30}:
+        nickname: '<current()>'
+        createdAt: <dateTime()>
+        distribution: '@distribution_*'
+        transmission: '@transmission_*'
+        gearbox: '@gearbox_*'
+        vehicleCategory: '@category_*'
+        brand: '@brand_*'
+        fuel: '@fuel_*'
+        buyPrice: '<randomFloat(2, 10)>'

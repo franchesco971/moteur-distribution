@@ -1,0 +1,4 @@
+App\Entity\Finition:
+    finition_{1..20}:
+        label: "<bothify('fi ##??')>"
+        vehicleGeneration: '@generation_<numberBetween(1, 10)>'

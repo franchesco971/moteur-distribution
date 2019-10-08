@@ -1,0 +1,3 @@
+App\Entity\VehicleCategory:
+    category_{Voiture, Utilitaire}:
+        label: '<current()>'

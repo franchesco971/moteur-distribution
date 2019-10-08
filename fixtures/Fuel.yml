@@ -1,0 +1,7 @@
+App\Entity\Fuel:
+    fuel_{Essence, Diesel, Electrique, Hydrogène}:
+        label: '<current()>'
+    fuel_hee:
+        label: 'Hybride électrique-essence'
+    fuel_hed:
+        label: 'Hybride électrique-diesel'

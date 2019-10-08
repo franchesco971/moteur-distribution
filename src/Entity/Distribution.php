@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
+ * @ORM\Entity(repositoryClass="App\Repository\DistributionRepository")
  * @ApiResource()
- * @ORM\Entity(repositoryClass="App\Repository\BrandRepository")
  */
-class Brand
+class Distribution
 {
     /**
      * @ORM\Id()
@@ -26,19 +26,13 @@ class Brand
     private $label;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="brand", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="distribution")
      */
     private $vehicles;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\VehicleModel", mappedBy="brand", orphanRemoval=true)
-     */
-    private $vehicleModels;
 
     public function __construct()
     {
         $this->vehicles = new ArrayCollection();
-        $this->vehicleModels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,7 +64,7 @@ class Brand
     {
         if (!$this->vehicles->contains($vehicle)) {
             $this->vehicles[] = $vehicle;
-            $vehicle->setBrand($this);
+            $vehicle->setDistribution($this);
         }
 
         return $this;
@@ -81,39 +75,8 @@ class Brand
         if ($this->vehicles->contains($vehicle)) {
             $this->vehicles->removeElement($vehicle);
             // set the owning side to null (unless already changed)
-            if ($vehicle->getBrand() === $this) {
-                $vehicle->setBrand(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|VehicleModel[]
-     */
-    public function getVehicleModels(): Collection
-    {
-        return $this->vehicleModels;
-    }
-
-    public function addVehicleModel(VehicleModel $vehicleModel): self
-    {
-        if (!$this->vehicleModels->contains($vehicleModel)) {
-            $this->vehicleModels[] = $vehicleModel;
-            $vehicleModel->setBrand($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVehicleModel(VehicleModel $vehicleModel): self
-    {
-        if ($this->vehicleModels->contains($vehicleModel)) {
-            $this->vehicleModels->removeElement($vehicleModel);
-            // set the owning side to null (unless already changed)
-            if ($vehicleModel->getBrand() === $this) {
-                $vehicleModel->setBrand(null);
+            if ($vehicle->getDistribution() === $this) {
+                $vehicle->setDistribution(null);
             }
         }
 
